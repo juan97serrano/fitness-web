@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FitPulse — Entrena con propósito</title>
+  <meta name="description" content="Programas de entrenamiento, biblioteca de ejercicios, calculadora de calorías y temporizador de intervalos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>">
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="logo">Fit<span>Pulse</span></a>
+      <button class="menu-btn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <nav class="links">
+        <a href="#programas">Programas</a>
+        <a href="#ejercicios">Ejercicios</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="#timer">Timer</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Entrenamiento inteligente</p>
+      <h1>Más fuerte cada semana.<br><span class="accent">Sin excusas.</span></h1>
+      <p class="lead">Programas estructurados, una biblioteca de ejercicios clara y herramientas para calcular tus necesidades y cronometrar tus series.</p>
+      <div class="cta">
+        <a href="#programas" class="btn primary">Ver programas</a>
+        <a href="#calculadora" class="btn ghost">Calcular mis calorías</a>
+      </div>
+      <div class="stats">
+        <div><strong>4</strong><span>programas</span></div>
+        <div><strong>18</strong><span>ejercicios</span></div>
+        <div><strong>100%</strong><span>gratis</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="programas" class="section">
+    <div class="container">
+      <h2>Programas</h2>
+      <p class="sub">Elige según tu nivel y objetivo. Haz clic para ver el plan semanal.</p>
+      <div class="grid programs" id="programs"></div>
+    </div>
+  </section>
+
+  <section id="ejercicios" class="section alt">
+    <div class="container">
+      <h2>Biblioteca de ejercicios</h2>
+      <p class="sub">Filtra por grupo muscular.</p>
+      <div class="filters" id="filters"></div>
+      <div class="grid exercises" id="exercises"></div>
+    </div>
+  </section>
+
+  <section id="calculadora" class="section">
+    <div class="container two-col">
+      <div>
+        <h2>Calculadora de calorías</h2>
+        <p class="sub">Estimación con la fórmula de Mifflin-St Jeor.</p>
+        <form id="calc-form" class="card form">
+          <div class="row">
+            <label>Sexo
+              <select name="sex"><option value="m">Hombre</option><option value="f">Mujer</option></select>
+            </label>
+            <label>Edad <input type="number" name="age" value="28" min="14" max="99" required></label>
+          </div>
+          <div class="row">
+            <label>Peso (kg) <input type="number" name="weight" value="75" min="30" max="300" step="0.1" required></label>
+            <label>Altura (cm) <input type="number" name="height" value="178" min="120" max="230" required></label>
+          </div>
+          <label>Actividad
+            <select name="activity">
+              <option value="1.2">Sedentario</option>
+              <option value="1.375">Ligera (1–3 días/sem)</option>
+              <option value="1.55" selected>Moderada (3–5 días/sem)</option>
+              <option value="1.725">Alta (6–7 días/sem)</option>
+              <option value="1.9">Muy alta (atleta)</option>
+            </select>
+          </label>
+          <label>Objetivo
+            <select name="goal">
+              <option value="-500">Perder grasa</option>
+              <option value="0" selected>Mantener</option>
+              <option value="300">Ganar músculo</option>
+            </select>
+          </label>
+          <button class="btn primary" type="submit">Calcular</button>
+        </form>
+      </div>
+      <div class="card results" id="results" aria-live="polite">
+        <p class="muted">Rellena el formulario para ver tus resultados.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="timer" class="section alt">
+    <div class="container">
+      <h2>Temporizador de intervalos</h2>
+      <p class="sub">Ideal para HIIT, Tabata o descansos entre series.</p>
+      <div class="card timer">
+        <div class="timer-settings">
+          <label>Trabajo (s) <input type="number" id="work" value="40" min="5" max="600"></label>
+          <label>Descanso (s) <input type="number" id="rest" value="20" min="0" max="600"></label>
+          <label>Rondas <input type="number" id="rounds" value="8" min="1" max="50"></label>
+        </div>
+        <div class="timer-display">
+          <div class="phase" id="phase">Listo</div>
+          <div class="clock" id="clock">00:40</div>
+          <div class="round" id="round-info">Ronda 0 / 8</div>
+          <div class="bar"><div id="bar-fill"></div></div>
+        </div>
+        <div class="timer-controls">
+          <button class="btn primary" id="start">Iniciar</button>
+          <button class="btn ghost" id="reset">Reiniciar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <dialog id="program-dialog">
+    <div class="dialog-body">
+      <button class="close" aria-label="Cerrar">×</button>
+      <div id="dialog-content"></div>
+    </div>
+  </dialog>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> FitPulse · Consulta con un profesional antes de empezar un programa nuevo.</p>
+    </div>
+  </footer>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
